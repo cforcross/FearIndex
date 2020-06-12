@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+<h1>{{api.name}}</h1>
+<p>
+    The fear and greed index measures the emotional sentiment in the  market whithin a given time.  It should not be use alone
+    but alongside other indicators such as should be used with dollar cost averaging
+</p>
+<hr>
+- sentiment = < 50 → fear, the market pump (very bearish) <br>
+- sentiment = > 50 → greed, the market dump (very bullish)<br>
+- sentiment = 50 → neutral, no uptrend / downtrend is yet to come<br>
+<hr>
+The diagram below is a self updating image of the Greed Fear Index at a given time and day
+</div>
+  <div class="container">
+    <img src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
+  </div>
+  <strong style="text-align: center;">{{api.name}}</strong>
+  
+  <hr>
+  <br>
+   
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">value</th>
+        <th scope="col">value_classification</th>
+        <th scope="col">timestamp</th>
+        <th scope="col">time_until_update</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+      <tr>
+        {% for x in api.data %}
+        <th scope="row"></th>
+        <td>{{x.value}}</td>
+        <td>{{x.value_classification}}</td>
+        <td>{{x.timestamp}}</td>
+        <td>{{x.time_until_update}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="jumbotron">
+      <i>References</i> <br>
+      <a href="https://alternative.me/crypto/fear-and-greed-index/ ">Fear Index API </a>
+      <br>
+  </div>
+
+{% endblock content %}
